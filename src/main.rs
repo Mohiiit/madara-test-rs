@@ -59,7 +59,7 @@ pub async fn get_balance(
                         address
                     ],
                 },
-                BlockId::Tag(BlockTag::Latest),
+                BlockId::Tag(BlockTag::Pending),
             )
             .await
             .expect("failed to call contract");
@@ -118,10 +118,6 @@ async fn main() {
     println!("Transaction receipt: {:?}", receipt);
 
     
-
-    // sleep for more than block time?
-    println!("Sleeping for 12 seconds (my block time is 10 seconds)");
-    tokio::time::sleep(tokio::time::Duration::from_secs(12)).await;
 
     let balance_after_a = get_balance(&provider2, address_a).await;
     let balance_after_b = get_balance(&provider2, address_b).await;
